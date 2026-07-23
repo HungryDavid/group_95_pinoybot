@@ -1,0 +1,22 @@
+# paste in terminal to allow model.py to read .xlsl files
+pip install pandas openpyxl scikit-learn 
+# paste in terminal to create the model/model path
+python model.py
+# paste in terminal to run pinoybot.py
+python pinoybot.py
+
+# example tokens and results
+["Grabe", "yung", "traffic", "kanina", "super", "late", "tuloy", "ako", "sa", "class", "q", "!"]
+['FIL', 'FIL', 'ENG', 'FIL', 'ENG', 'ENG', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'OTH']
+['Sino', 'ba', 'talaga', 'yung', 'nag', 'luluto', 'ng', 'dinner', 'kasi', 'gusto', 'ko', 'nang', 'kumain', 'na']
+['FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL']
+["Hala", "nakalimutan", "q", "pala", "yung", "reviewer", "ko", "sa", "room", "shucks", ":("]
+['FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'FIL', 'OTH', 'ENG', 'OTH']
+["Lord", "sana", "pumasa", "ako", "sa", "exam", "kay", "Diyos", "ang", "lahat", "please", "po"]
+['OTH', 'FIL', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'OTH', 'FIL', 'FIL', 'ENG', 'FIL']
+["Narinig", "nyo", "ba", "yung", "speech", "ni", "PressiidentMartin", "kanina", "sa", "news", "?"]
+['FIL', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'OTH', 'FIL', 'FIL', 'ENG', 'OTH']
+["Sino", "ba", "yung", "nag", "sabi", "na", "away", "daw", "yun"]
+['FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL', 'FIL']
+['Galit', 'yung', 'drayber', 'kasi', 'napaka-slow', 'ng', 'trapik', 'sa', 'EDSA']
+['FIL', 'FIL', 'ENG', 'FIL', 'CS', 'FIL', 'FIL', 'FIL', 'OTH']
