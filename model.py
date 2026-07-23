@@ -70,7 +70,7 @@ def train_model(excel_file_path):
     y_pred_val = clf.predict(X_val) # this is what pinoybot also calls to predict the language of each token in a sentence, but here we are using it to evaluate the model's performance on the validation set.
     # print the validation and test classification reports to evaluate the model's performance.
     print("\nValidation Classification Report:")
-    print(classification_report(y_val, y_pred_val, zero_division=0))
+    print(classification_report(y_val, y_pred_val, zero_division=0)) # zero division to prevent errors in case there are no predictions for a certain class in the validation set like 0/0 is undefined then we default it to 0.
 
     y_pred_test = clf.predict(X_test)
     print("\nTest Classification Report:")
