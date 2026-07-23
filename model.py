@@ -9,7 +9,9 @@ from sklearn.ensemble import VotingClassifier
 from sklearn.metrics import classification_report
 from pinoybot import extract_features
 
-def train_model(excel_file_path: str, model_output_path: str = 'model.pkl', vectorizer_output_path: str = 'vectorizer.pkl'):
+MODEL_PATH = 'model.pkl'
+VECTORIZER_PATH = 'vectorizer.pkl'
+def train_model(excel_file_path):
     df = pd.read_excel(excel_file_path, engine='openpyxl')
     
     df.columns = df.columns.str.strip() # strip whitespace from column names
@@ -61,11 +63,12 @@ def train_model(excel_file_path: str, model_output_path: str = 'model.pkl', vect
             ('nb', nb_clf)
         ],
         voting='soft',
-        weights=[1, 2]
+        weights=[1, 2] # give more weight to the Naive Bayes classifier
     )
     clf.fit(X_train, y_train)
 
-    y_pred_val = clf.predict(X_val)
+    y_pred_val = clf.predict(X_val) # this is what pinoybot also calls to predict the language of each token in a sentence, but here we are using it to evaluate the model's performance on the validation set.
+    # print the validation and test classification reports to evaluate the model's performance.
     print("\nValidation Classification Report:")
     print(classification_report(y_val, y_pred_val, zero_division=0))
 
@@ -73,11 +76,12 @@ def train_model(excel_file_path: str, model_output_path: str = 'model.pkl', vect
     print("\nTest Classification Report:")
     print(classification_report(y_test, y_pred_test, zero_division=0))
 
-    joblib.dump(vectorizer, vectorizer_output_path)
-    joblib.dump(clf, model_output_path)
+    # save the trained model and vectorizer to disk using joblib.
+    joblib.dump(vectorizer, VECTORIZER_PATH)
+    joblib.dump(clf, MODEL_PATH)
     joblib.dump(sentences_map, 'sentences_map.pkl')
-    print(f"Model successfully saved to {model_output_path}")
-    print(f"Vectorizer successfully saved to {vectorizer_output_path}")
+    print(f"Model successfully saved to {MODEL_PATH}")
+    print(f"Vectorizer successfully saved to {VECTORIZER_PATH}")
 
 if __name__ == "__main__":
     excel_path = "Shared Dataset.xlsx"

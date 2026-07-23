@@ -5,6 +5,10 @@ python model.py
 # paste in terminal to run pinoybot.py
 python pinoybot.py
 
+# our required sentence_id's are from 1879-1900 (sentence_id 1880 is missing so we had to replace it with 1879)
+# spanning from rows 30229 to 30733
+
+
 # example tokens and results
 ["Grabe", "yung", "traffic", "kanina", "super", "late", "tuloy", "ako", "sa", "class", "q", "!"]
 ['FIL', 'FIL', 'ENG', 'FIL', 'ENG', 'ENG', 'FIL', 'FIL', 'FIL', 'ENG', 'FIL', 'OTH']
