@@ -1,0 +1,4 @@
+Pinoybot is a project from csintsy that tackles proper labeling of words or tokens with their appropriate tags. Here we were given a dataset containing about 41k words/tokens that we needed to manually annotate, this dataset was then used to train our model. 
+Our dataset is a shared dataset for 4 groups and we collaborated with each other in order to quickly annotate the whole dataset. After that, our group focused on pinoybot.py. We first created a file named model.py where our model will reside in as per the specifications 
+to create a new file for the model. The first thing we did was to load the dataset (.xlsl) in python and to do that we had to "pip install pandas openpyxl scikit-learn", we then imported joblib and made a small try except block to check if the dataset exist/python can read the dataset.
+Next is we opened the dataset and dropped the rows with missing values in columns word, lang and sentence_id to filter it. Then
