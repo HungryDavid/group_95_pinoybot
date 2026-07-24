@@ -19,6 +19,13 @@ def extract_features(tokens, index):
     word = tokens[index]
     word_lower = word.lower()
     
+    # --- ADDED BY ANTIGRAVITY ---
+    # Calculate vowel ratio (number of vowels / word length)
+    vowels = "aeiou"
+    vowel_count = sum(1 for char in word_lower if char in vowels)
+    vowel_ratio = vowel_count / len(word) if len(word) > 0 else 0
+    # ----------------------------
+    
     features = {
         'word.lower': word_lower,
         'word.length': len(word),
@@ -27,11 +34,26 @@ def extract_features(tokens, index):
         'word.is_all_lower': word.islower(),
         'word.contains_digit': any(char.isdigit() for char in word),
         'word.contains_punct': any(not char.isalnum() for char in word),
+        
+        # --- ADDED BY ANTIGRAVITY ---
+        'word.contains_hyphen': '-' in word,
+        'word.vowel_ratio': vowel_ratio,
+        # ----------------------------
+        
         'word.prefix_2': word_lower[:2] if len(word_lower) >= 2 else word_lower,
         'word.prefix_3': word_lower[:3] if len(word_lower) >= 3 else word_lower,
         'word.suffix_2': word_lower[-2:] if len(word_lower) >= 2 else word_lower,
         'word.suffix_3': word_lower[-3:] if len(word_lower) >= 3 else word_lower,
-        'word.has_fil_prefix': any(word_lower.startswith(p) for p in ['nag', 'mag', 'pag', 'pa', 'na', 'um', 'in', 'ka']),
+        
+        # --- MODIFIED/ADDED BY ANTIGRAVITY ---
+        # Removed code:
+        # 'word.has_fil_prefix': any(word_lower.startswith(p) for p in ['nag', 'mag', 'pag', 'pa', 'na', 'um', 'in', 'ka']),
+        
+        'word.has_fil_prefix': any(word_lower.startswith(p) for p in ['nag', 'mag', 'pag', 'pa', 'na', 'um', 'in', 'ka', 'pinaka', 'maka']),
+        'word.has_fil_infix': any(infix in word_lower[1:-1] for infix in ['um', 'in']),
+        'word.has_fil_suffix': any(word_lower.endswith(s) for s in ['an', 'han', 'hin', 'in']),
+        # -------------------------------------
+        
         'word.has_eng_suffix': any(word_lower.endswith(s) for s in ['ing', 'ed', 's', 'tion', 'ment', 'ity']),
     }
     

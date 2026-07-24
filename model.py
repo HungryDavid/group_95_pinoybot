@@ -3,7 +3,10 @@ import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import DictVectorizer
-from sklearn.tree import DecisionTreeClassifier
+# --- MODIFIED BY ANTIGRAVITY ---
+# Removed code: from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+# -------------------------------
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import VotingClassifier
 from sklearn.metrics import classification_report
@@ -54,16 +57,30 @@ def train_model(excel_file_path):
     X_test = vectorizer.transform(X_test_dicts)
 
     # initializes the model and trains it using the 70% training features and labels.
+    
+    # --- MODIFIED BY ANTIGRAVITY ---
+    # Removed code:
     # here we use a VotingClassifier that combines a Decision Tree and a Multinomial Naive Bayes classifier, with the Naive Bayes given more weight in the voting process.
-    dt_clf = DecisionTreeClassifier(class_weight='balanced', random_state=42)
+    # dt_clf = DecisionTreeClassifier(class_weight='balanced', random_state=42)
+    
+    # here we use a VotingClassifier that combines Logistic Regression and a Multinomial Naive Bayes classifier.
+    lr_clf = LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)
+    # -------------------------------
+    
     nb_clf = MultinomialNB(alpha=0.5)
     clf = VotingClassifier(
         estimators=[
-            ('dt', dt_clf), 
+            # --- MODIFIED BY ANTIGRAVITY ---
+            # Removed code: ('dt', dt_clf),
+            ('lr', lr_clf), 
+            # -------------------------------
             ('nb', nb_clf)
         ],
         voting='soft',
-        weights=[1, 2] # give more weight to the Naive Bayes classifier
+        # --- MODIFIED BY ANTIGRAVITY ---
+        # Removed code: weights=[1, 2] # give more weight to the Naive Bayes classifier
+        weights=[2, 1] # give more weight to the Logistic Regression classifier
+        # -------------------------------
     )
     clf.fit(X_train, y_train)
 
