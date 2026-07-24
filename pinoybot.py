@@ -55,7 +55,7 @@ def extract_features(tokens, index):
         
     return features
 
-def tag_language(tokens: List[str]) -> List[str]:
+def tag_language(tokens: List[str] =["Love", "kita", "."]) -> List[str]:
     """
     Tags each token in the input list with its predicted language.
     Args:
@@ -97,7 +97,8 @@ def tag_language(tokens: List[str]) -> List[str]:
 
 if __name__ == "__main__":
     # Example usage
-    example_tokens = ["Love", "kita", "."]
+    sentence = input("Enter a sentence: ")
+    example_tokens = sentence.split()
     print(f"Tokens: {example_tokens}")
     tags = tag_language(example_tokens)
     print(f"Tags:   {tags}")
